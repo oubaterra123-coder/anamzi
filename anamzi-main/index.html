@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<title>WhatsApp Link Generator</title>
+	<style>
+		body{font-family:Arial,Helvetica,sans-serif;max-width:600px;margin:40px auto;padding:0 20px}
+		input{padding:8px;width:70%;margin-right:8px}
+		button{padding:8px}
+		#result{margin-top:16px;word-break:break-all}
+	</style>
+</head>
+<body>
+	<h1>WhatsApp Link Generator 🚀</h1>
+
+	<input id="num" placeholder="Enter phone number (country code + number, no + or 0)" aria-label="phone number">
+	<button onclick="generate()">Generate</button>
+
+	<p id="result"></p>
+
+	<script>
+		function generate(){
+			let num = document.getElementById("num").value.trim();
+			if(!num){
+				document.getElementById("result").textContent = 'Please enter a phone number.';
+				return;
+			}
+			// remove non-digit characters
+			let clean = num.replace(/\D+/g, '');
+			let link = "https://wa.me/" + clean;
+			document.getElementById("result").innerHTML = '<a href="'+link+'" target="_blank" rel="noopener">'+link+'</a>';
+		}
+	</script>
+</body>
+</html>
