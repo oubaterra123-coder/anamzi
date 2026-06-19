@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>WhatsApp Link Generator</title>
+</head>
+<body>
+    <h1>WhatsApp Link Generator 🚀</h1>
+
+    <input type="text" id="phone" placeholder="212612345678">
+    <button onclick="generate()">Generate Link</button>
+
+    <p id="result"></p>
+
+    <script>
+        function generate() {
+            const phone = document.getElementById('phone').value;
+            const link = "https://wa.me/" + phone;
+            document.getElementById('result').innerHTML =
+                `<a href="${link}" target="_blank">${link}</a>`;
+        }
+    </script>
+</body>
+</html>
