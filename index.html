@@ -1,118 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WhatsApp Link Generator</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-
-<style>
-    body {
-        margin: 0;
-        font-family: 'Inter', sans-serif;
-        background: radial-gradient(circle at top, #25D366, #0b3d2e);
-        height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
-    }
-
-    .container {
-        width: 360px;
-        background: rgba(255,255,255,0.1);
-        backdrop-filter: blur(15px);
-        border-radius: 18px;
-        padding: 25px;
-        box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-        text-align: center;
-    }
-
-    h1 {
-        font-size: 20px;
-        margin-bottom: 15px;
-    }
-
-    p {
-        font-size: 13px;
-        opacity: 0.8;
-        margin-bottom: 20px;
-    }
-
-    input {
-        width: 100%;
-        padding: 12px;
-        border-radius: 10px;
-        border: none;
-        outline: none;
-        margin-bottom: 12px;
-        font-size: 14px;
-    }
-
-    button {
-        width: 100%;
-        padding: 12px;
-        border: none;
-        border-radius: 10px;
-        background: #25D366;
-        color: white;
-        font-weight: bold;
-        cursor: pointer;
-        transition: 0.2s;
-    }
-
-    button:hover {
-        background: #1ebe5d;
-        transform: scale(1.03);
-    }
-
-    .result {
-        margin-top: 15px;
-        word-break: break-all;
-        font-size: 13px;
-    }
-
-    a {
-        color: #fff;
-        font-weight: bold;
-        text-decoration: underline;
-    }
-
-    .badge {
-        display: inline-block;
-        background: rgba(255,255,255,0.2);
-        padding: 4px 10px;
-        border-radius: 20px;
-        font-size: 11px;
-        margin-bottom: 10px;
-    }
-</style>
-</head>
-
-<body>
-
-<div class="container">
-    <div class="badge">🚀 Free Tool</div>
-    <h1>WhatsApp Link Generator</h1>
-    <p>Create instant WhatsApp links without saving contacts</p>
-
-    <input type="text" id="phone" placeholder="Enter number (212...)">
-
-    <button onclick="generate()">Generate Link</button>
-
-    <div class="result" id="result"></div>
-</div>
-
-<script>
-function generate() {
-    let phone = document.getElementById("phone").value;
-    let link = "https://wa.me/" + phone;
-
-    document.getElementById("result").innerHTML =
-        `👉 <a href="${link}" target="_blank">${link}</a>`;
-}
-</script>
-
-</body>
-</html>
+<button onclick="generate()" style="
+padding:12px;
+border:none;
+border-radius:12px;
+background:linear-gradient(90deg,#25D366,#128C7E);
+color:white;
+font-weight:bold;
+cursor:pointer;
+width:100%;
+">
+Generate WhatsApp Link 🚀
+</button>
+<button onclick="navigator.clipboard.writeText(document.getElementById('result').innerText)">
+Copy Link 📋
+</button>
