@@ -1,6 +1,25 @@
 <!DOCTYPE html>
 <html>
-<body>
-<h1>Hello World 🚀</h1>
+<head>
+  <meta charset="UTF-8">
+  <title>WhatsApp Link Generator</title>
+</head>
+<body style="font-family:Arial;text-align:center;margin-top:50px">
+
+<h1>WhatsApp Link Generator 🚀</h1>
+
+<input id="num" placeholder="Enter number">
+<button onclick="generate()">Generate</button>
+
+<p id="result"></p>
+
+<script>
+function generate(){
+  let num = document.getElementById("num").value;
+  document.getElementById("result").innerHTML =
+  `<a href="https://wa.me/${num}" target="_blank">Open Chat</a>`;
+}
+</script>
+
 </body>
 </html>
