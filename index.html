@@ -56,7 +56,45 @@ button{
 
 <body>
 
-<div class="card"><button onclick="copyLink()" style="background:#128C7E;">
+<div class="card">
+
+<h2>WhatsApp Tool 🚀</h2>
+
+<!-- Country -->
+<select id="country">
+    <option value="212">🇲🇦 Morocco (+212)</option>
+    <option value="213">🇩🇿 Algeria (+213)</option>
+    <option value="216">🇹🇳 Tunisia (+216)</option>
+    <option value="20">🇪🇬 Egypt (+20)</option>
+
+    <option value="1">🇺🇸 USA (+1)</option>
+    <option value="44">🇬🇧 UK (+44)</option>
+    <option value="33">🇫🇷 France (+33)</option>
+    <option value="34">🇪🇸 Spain (+34)</option>
+    <option value="49">🇩🇪 Germany (+49)</option>
+    <option value="39">🇮🇹 Italy (+39)</option>
+
+    <option value="90">🇹🇷 Turkey (+90)</option>
+    <option value="971">🇦🇪 UAE (+971)</option>
+    <option value="966">🇸🇦 Saudi Arabia (+966)</option>
+    <option value="91">🇮🇳 India (+91)</option>
+    <option value="86">🇨🇳 China (+86)</option>
+
+    <option value="81">🇯🇵 Japan (+81)</option>
+    <option value="82">🇰🇷 South Korea (+82)</option>
+    <option value="55">🇧🇷 Brazil (+55)</option>
+    <option value="7">🇷🇺 Russia (+7)</option>
+</select>
+
+<input id="num" placeholder="Phone number">
+
+<button onclick="generate()">Generate Link 🚀</button>
+
+<p id="result"></p>
+
+<div id="qrcode"></div>
+
+<button onclick="copyLink()" style="background:#128C7E;">
 Copy Link 📋
 </button>
 
@@ -65,61 +103,7 @@ margin-top:10px;
 font-size:12px;
 opacity:0;
 transition:0.3s;
-">
-</div>
-
-<h2>WhatsApp Tool 🚀</h2>
-
-<!-- Country -->
-<select id="country">
-    <select id="country">
-
-<option value="212">🇲🇦 Morocco (+212)</option>
-<option value="213">🇩🇿 Algeria (+213)</option>
-<option value="216">🇹🇳 Tunisia (+216)</option>
-<option value="20">🇪🇬 Egypt (+20)</option>
-
-<option value="1">🇺🇸 USA (+1)</option>
-<option value="44">🇬🇧 UK (+44)</option>
-<option value="33">🇫🇷 France (+33)</option>
-<option value="34">🇪🇸 Spain (+34)</option>
-<option value="49">🇩🇪 Germany (+49)</option>
-<option value="39">🇮🇹 Italy (+39)</option>
-
-<option value="90">🇹🇷 Turkey (+90)</option>
-<option value="971">🇦🇪 UAE (+971)</option>
-<option value="966">🇸🇦 Saudi Arabia (+966)</option>
-<option value="91">🇮🇳 India (+91)</option>
-<option value="86">🇨🇳 China (+86)</option>
-
-<option value="81">🇯🇵 Japan (+81)</option>
-<option value="82">🇰🇷 South Korea (+82)</option>
-<option value="55">🇧🇷 Brazil (+55)</option>
-<option value="7">🇷🇺 Russia (+7)</option>
-
-</select>
-</select>
-
-<input id="num" placeholder="Phone number">
-
-<button onclick="generate()" style="
-width:100%;
-padding:10px;
-margin-top:10px;
-background:#25D366;
-color:white;
-border:none;
-border-radius:8px;
-font-weight:bold;
-cursor:pointer;
-transition:0.2s;
-">
-Generate Link 🚀
-</button>
-
-<p id="result"></p>
-
-<div id="qrcode"></div>
+"></div>
 
 </div>
 
@@ -135,16 +119,17 @@ function generate(){
         return;
     }
 
+    num = num.replace(/\D/g,''); // clean number
+
     currentLink = "https://wa.me/" + country + num;
 
     document.getElementById("result").innerHTML =
         `<a href="${currentLink}" target="_blank">${currentLink}</a>`;
 
-    // QR
     document.getElementById("qrcode").innerHTML = "";
     new QRCode(document.getElementById("qrcode"), currentLink);
 }
-</script>
+
 function copyLink(){
     if(!currentLink){
         showToast("Generate link first");
@@ -164,6 +149,7 @@ function showToast(msg){
         t.style.opacity = "0";
     }, 1500);
 }
+</script>
 
 </body>
 </html>
