@@ -144,7 +144,8 @@ function generate(){
     document.getElementById("qrcode").innerHTML = "";
     new QRCode(document.getElementById("qrcode"), currentLink);
 }
-</script>function copyLink(){
+</script>
+function copyLink(){
     if(!currentLink){
         showToast("Generate link first");
         return;
