@@ -1,85 +1,50 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WhatsApp SaaS Pro</title>
+<title>WhatsApp Tool</title>
+</head><script src="https://cdn.jsdelivr.net/npm/qrcodejs/qrcode.min.js"></script>
 
-<style>
-body{
-    margin:0;
-    font-family:Arial;
-    background:linear-gradient(135deg,#0b3d2e,#25D366);
-    height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-}
+<body style="font-family:Arial;text-align:center;margin-top:60px">
 
-.card{
-    background:rgba(255,255,255,0.15);
-    backdrop-filter:blur(15px);
-    padding:25px;
-    border-radius:16px;
-    width:340px;
-    text-align:center;
-    color:white;
-    box-shadow:0 10px 30px rgba(0,0,0,0.3);
-}
+<div style="
+background:rgba(255,255,255,0.15);
+padding:25px;
+border-radius:16px;
+backdrop-filter:blur(10px);
+width:320px;
+color:white;
+box-shadow:0 10px 30px rgba(0,0,0,0.3);
+">
 
-input{
-    width:100%;
-    padding:10px;
-    margin-top:10px;
-    border:none;
-    border-radius:8px;
-}
-
-button{
-    width:100%;
-    padding:10px;
-    margin-top:10px;
-    border:none;
-    border-radius:8px;
-    cursor:pointer;
-}
-
-.gen{
-    background:#25D366;
-    color:white;
-}
-
-.copy{
-    background:#128C7E;
-    color:white;
-}
-
-a{
-    color:white;
-    font-weight:bold;
-}
-</style>
-</head>
-
-<body>
-
-<div class="card">
 <h2>WhatsApp Tool 🚀</h2>
 
-<input id="num" placeholder="Enter number">
+<input id="num" placeholder="Enter number" style="padding:10px;width:100%;border:none;border-radius:8px">
 
-<button class="gen" onclick="generate()">Generate Link</button>
+<br><br>
+
+<button onclick="generate()" style="width:100%;padding:10px;background:#25D366;color:white;border:none;border-radius:8px">
+Generate
+</button>
 
 <p id="result"></p>
 
-<button class="copy" onclick="copyLink()">Copy Link 📋</button>
+<button onclick="copyLink()" style="width:100%;padding:10px;background:#128C7E;color:white;border:none;border-radius:8px;margin-top:10px">
+Copy Link 📋
+</button>
+
 </div>
+
+<button onclick="copyLink()" style="padding:10px;background:#128C7E;color:white;border:none;margin-top:10px">
+Copy Link 📋
+</button>
 
 <script>
 let currentLink = "";
 
 function generate(){
-    let num = document.getElementById("num").value.trim();
+    let num = document.getElementById("num").value;
 
     if(!num){
         document.getElementById("result").innerText = "Enter number";
@@ -89,7 +54,7 @@ function generate(){
     currentLink = "https://wa.me/" + num;
 
     document.getElementById("result").innerHTML =
-        `<a href="${currentLink}" target="_blank">${currentLink}</a>`;
+        "<a href='" + currentLink + "' target='_blank'>" + currentLink + "</a>";
 }
 
 function copyLink(){
@@ -103,5 +68,14 @@ function copyLink(){
 }
 </script>
 
-</body>
+<body style="
+font-family:Arial;
+text-align:center;
+margin:0;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(135deg,#0b3d2e,#25D366);
+">
 </html>
