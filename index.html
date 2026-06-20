@@ -1,37 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WhatsApp SaaS Pro</title>
+
+<style>
+body{
+    margin:0;
+    font-family:Arial;
+    background:linear-gradient(135deg,#0b3d2e,#25D366);
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.card{
+    background:rgba(255,255,255,0.15);
+    backdrop-filter:blur(15px);
+    padding:25px;
+    border-radius:16px;
+    width:340px;
+    text-align:center;
+    color:white;
+    box-shadow:0 10px 30px rgba(0,0,0,0.3);
+}
+
+input{
+    width:100%;
+    padding:10px;
+    margin-top:10px;
+    border:none;
+    border-radius:8px;
+}
+
+button{
+    width:100%;
+    padding:10px;
+    margin-top:10px;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.gen{
+    background:#25D366;
+    color:white;
+}
+
+.copy{
+    background:#128C7E;
+    color:white;
+}
+
+a{
+    color:white;
+    font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+<h2>WhatsApp Tool 🚀</h2>
+
+<input id="num" placeholder="Enter number">
+
+<button class="gen" onclick="generate()">Generate Link</button>
+
+<p id="result"></p>
+
+<button class="copy" onclick="copyLink()">Copy Link 📋</button>
+</div>
+
 <script>
 let currentLink = "";
 
 function generate(){
-    try {
-        let num = document.getElementById("num").value;
+    let num = document.getElementById("num").value.trim();
 
-        if(!num){
-            document.getElementById("result").innerText = "Enter number";
-            return;
-        }
-
-        currentLink = "https://wa.me/" + num;
-
-        document.getElementById("result").innerHTML =
-            "<a href='" + currentLink + "' target='_blank'>Open WhatsApp</a>";
-
-    } catch(e){
-        console.log("ERROR:", e);
-        document.getElementById("result").innerText = "Something went wrong";
+    if(!num){
+        document.getElementById("result").innerText = "Enter number";
+        return;
     }
+
+    currentLink = "https://wa.me/" + num;
+
+    document.getElementById("result").innerHTML =
+        `<a href="${currentLink}" target="_blank">${currentLink}</a>`;
 }
 
 function copyLink(){
-    try {
-        if(!currentLink){
-            alert("Generate link first");
-            return;
-        }
-
-        navigator.clipboard.writeText(currentLink);
-        alert("Copied!");
-    } catch(e){
-        alert("Copy not supported in this browser");
+    if(!currentLink){
+        alert("Generate link first");
+        return;
     }
+
+    navigator.clipboard.writeText(currentLink);
+    alert("Copied!");
 }
 </script>
+
+</body>
+</html>
