@@ -1,25 +1,37 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8">
-  <title>WhatsApp Link Generator</title>
-</head>
-<body style="font-family:Arial;text-align:center;margin-top:50px">
-
-<h1>WhatsApp Link Generator 🚀</h1>
-
-<input id="num" placeholder="Enter number">
-<button onclick="generate()">Generate</button>
-
-<p id="result"></p>
-
 <script>
+let currentLink = "";
+
 function generate(){
-  let num = document.getElementById("num").value;
-  document.getElementById("result").innerHTML =
-  `<a href="https://wa.me/${num}" target="_blank">Open Chat</a>`;
+    try {
+        let num = document.getElementById("num").value;
+
+        if(!num){
+            document.getElementById("result").innerText = "Enter number";
+            return;
+        }
+
+        currentLink = "https://wa.me/" + num;
+
+        document.getElementById("result").innerHTML =
+            "<a href='" + currentLink + "' target='_blank'>Open WhatsApp</a>";
+
+    } catch(e){
+        console.log("ERROR:", e);
+        document.getElementById("result").innerText = "Something went wrong";
+    }
+}
+
+function copyLink(){
+    try {
+        if(!currentLink){
+            alert("Generate link first");
+            return;
+        }
+
+        navigator.clipboard.writeText(currentLink);
+        alert("Copied!");
+    } catch(e){
+        alert("Copy not supported in this browser");
+    }
 }
 </script>
-
-</body>
-</html>
