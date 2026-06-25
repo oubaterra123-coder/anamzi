@@ -16,6 +16,7 @@ body{
     display:flex;
     justify-content:center;
     align-items:center;
+    transition:0.3s;
 }
 
 .card{
@@ -26,6 +27,7 @@ body{
     text-align:center;
     color:white;
     backdrop-filter:blur(10px);
+    transition:0.3s;
 }
 
 input,select{
@@ -60,7 +62,10 @@ button{
 
 <h2>WhatsApp Tool 🚀</h2>
 
-<!-- Country -->
+<button onclick="toggleDark()" style="background:#222;">
+🌙 Dark Mode
+</button>
+
 <select id="country">
     <option value="212">🇲🇦 Morocco (+212)</option>
     <option value="213">🇩🇿 Algeria (+213)</option>
@@ -98,17 +103,16 @@ button{
 Copy Link 📋
 </button>
 
-<div id="toast" style="
-margin-top:10px;
-font-size:12px;
-opacity:0;
-transition:0.3s;
-"></div>
+<div id="toast" style="margin-top:10px;font-size:12px;opacity:0;transition:0.3s;"></div>
+
+<div id="history" style="margin-top:10px;font-size:11px;text-align:left;"></div>
 
 </div>
 
 <script>
 let currentLink = "";
+let history = [];
+let dark = false;
 
 function generate(){
     let country = document.getElementById("country").value;
@@ -119,7 +123,7 @@ function generate(){
         return;
     }
 
-    num = num.replace(/\D/g,''); // clean number
+    num = num.replace(/[^0-9]/g,'');
 
     currentLink = "https://wa.me/" + country + num;
 
@@ -128,6 +132,8 @@ function generate(){
 
     document.getElementById("qrcode").innerHTML = "";
     new QRCode(document.getElementById("qrcode"), currentLink);
+
+    saveHistory(currentLink);
 }
 
 function copyLink(){
@@ -137,7 +143,7 @@ function copyLink(){
     }
 
     navigator.clipboard.writeText(currentLink);
-    showToast("Copied to clipboard!");
+    showToast("Copied!");
 }
 
 function showToast(msg){
@@ -145,9 +151,28 @@ function showToast(msg){
     t.innerText = msg;
     t.style.opacity = "1";
 
-    setTimeout(()=>{
-        t.style.opacity = "0";
-    }, 1500);
+    setTimeout(()=>{ t.style.opacity = "0"; },1500);
+}
+
+function saveHistory(link){
+    history.unshift(link);
+    history = history.slice(0,5);
+
+    document.getElementById("history").innerHTML =
+        "<b>History:</b><br>" +
+        history.map(l => `<div style="word-break:break-all">${l}</div>`).join("");
+}
+
+function toggleDark(){
+    dark = !dark;
+
+    if(dark){
+        document.body.style.background = "#111";
+        document.querySelector(".card").style.background = "#222";
+    }else{
+        document.body.style.background = "linear-gradient(135deg,#0b3d2e,#25D366)";
+        document.querySelector(".card").style.background = "rgba(255,255,255,0.15)";
+    }
 }
 </script>
 
